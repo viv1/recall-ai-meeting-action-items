@@ -1,0 +1,5 @@
+client-app/node_modules/
+server-app/node_modules/
+build/
+dist/
+.env
