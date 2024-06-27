@@ -43,7 +43,7 @@ The project is divided into two main parts:
 3. Run the build command: `npm run build`
 4. Start the client server: `npm run start`
 
-The frontend will be available at `http://localhost:3000` (i.e uses 3000 Port by default. However, if that Port is not available, it uses the next available Port.
+The frontend will be available at `http://localhost:3000` (i.e uses 3000 Port by default. However, if that Port is not available, it uses the next available Port. You can use different port by modifying `PORT` value in `.env` file.
 
 ### Backend
 

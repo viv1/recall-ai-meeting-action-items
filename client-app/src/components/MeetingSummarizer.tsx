@@ -10,7 +10,7 @@ const MeetingSummarizer: React.FC = () => {
   const [transcript, setTranscript] = useState('');
   const [error, setError] = useState('');
 
-  const API_BASE_URL = process.env.BACKEND_URL; // Your backend API base URL
+  const API_BASE_URL = process.env.BACKEND_URL || 'http://localhost:3002'; // Your backend API base URL
 
   const handleCreateBot = async () => {
     try {
