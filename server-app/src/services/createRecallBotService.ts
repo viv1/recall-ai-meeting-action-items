@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // This method creates a recall Bot that listens in on a zoom meeting for which the url is provided
-const createRecallBot = async (meetingUrl: string) => {
+const createRecallBot = async (meetingLink: string) => {
     let data = JSON.stringify({
-        "meeting_url": meetingUrl,
+        "meeting_url": meetingLink,
         "bot_name": "Meeting Bot",
         "transcription_options": {
             "provider": "meeting_captions"
@@ -28,11 +28,12 @@ const createRecallBot = async (meetingUrl: string) => {
                 return response.data["id"] // return Bot ID
             }
             console.log(response.status, response.data)
-            return null; // return empty if API does not return 201 status
+
+            throw 'Create bot was not successful';
         })
         .catch((error: any) => { // Error calling API
             console.log(error);
-            return null; // return empty if API does not return 201 status
+            throw 'Create bot was not successful: ' + error;
         });
 }
 

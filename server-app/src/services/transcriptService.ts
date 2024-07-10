@@ -5,7 +5,7 @@ const getFinalTranscript = async (botId: string): Promise<string> => {
     console.log(`Bot Id: ${botId}`)
 
     const transcriptObject = await fetchTranscriptFromMeeting(botId);
-    if( transcriptObject === null ) return ""; // Return Empty string if meeting trancript could not be fetched
+    if( transcriptObject === null ) throw 'Could not get transcript. Please try again later: '; // Return Empty string if meeting trancript could not be fetched
 
     return formatTranscript(transcriptObject); // Return formatted transcript
   };
@@ -44,12 +44,11 @@ const fetchTranscriptFromMeeting = async (botId: string) => {
             if (response.status === 200) {  // Transcript was successfully fetched.
                 return response.data // return transcript
             }
-            return null; // return null if API does not return 200 status
-
+            throw 'Could not get transcript. Please try again later.';
         })
         .catch((error: any) => {
             console.log(error);
-            return null; // return null if API does not return 200 status
+            throw 'Could not get transcript. Please try again later: ' + error;
         });
 }
 

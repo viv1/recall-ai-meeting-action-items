@@ -3,9 +3,9 @@ import createRecallBot from '../services/createRecallBotService';
 
 export const botController = async (req: Request, res: Response) => {
   try {
-    const { meetingUrl } = req.body;
+    const { meetingLink } = req.body;
     // Create Recall Meeting Bot
-    const botId = await createRecallBot(meetingUrl)
+    const botId = await createRecallBot(meetingLink)
     res.json({ botId });
 
   } catch (error) {
