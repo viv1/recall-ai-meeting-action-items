@@ -1,17 +1,17 @@
-# Recall Demo Meeting Summarizer App
+# Recall Demo Meeting Action Items
 
-This demo application allows users to receive a summary of the meeting transcript by simply providing a meeting url.
+This demo application allows users to show user-wise action items from the ongoing meeting by simply providing a meeting url.
 
-![ded](RecallSummarizerBot.png)
+![Final Output](Step4.png)
 
 ## Description:
 
-The purpose of this demo is to show how one can easily fetch live trancripts from any meeting, and make use of the transcripts to do more advanced things. In this case, we are simply providing a summary of the meeting.
+The purpose of this demo is to show how one can easily fetch live trancripts from any meeting, and make use of the transcripts to do more advanced things. In this case, we are simply providing action items for each user in the meeting.
 
 This demo app does 3 things:
 - Uses Recall.ai API to send a meeting bot instaneously to any live meeting.
 - Use the Recall.ai API to fetch meeting transcript from any live meeting.
-- Use an LLM (OpenAI in this case, but you can use anything really) to provide the summary, given the transcripts.
+- Use an LLM (OpenAI in this case, but you can use anything really) to provide the action items, given the transcripts.
 
 ## Technologies Used
 
@@ -61,9 +61,9 @@ The backend will be available at `http://localhost:3002` . You can use another p
 3. Build and start your client-app as mentioned above.
 4. Build and start your server-app as mentioned above.
 5. Open `http://localhost:3000`
-6. Paste your live meeting link in the input box, and click on `Create Bot`. This adds the bot to the meeting.
+6. Paste your live meeting link in the input box, and click on `Start Recording`. This adds the bot to the meeting.
 7. Now, you can go and participate in your meeting.
-8. Once the Bot is added to the meeting, you will see a new button to `Get Meeting Summary`. Click on it. This will give you both the transcript and the meeting summary.
-9. You can click on `Get Meeting Summary` any number of times, and it will fetch the new transcripts and summary every time.
+8. The app polls for the meeting status every few seconds. Instead of polling, you might want to implement a webhook, but that is out of scope of this demo.
+9. Once the meeting ends, come back to the app. It will list the user-wise action items.
 
-PS: Please make sure you are aware of the charges from OpenAI and Recall when calling their APIs. Each click on `Get Meeting Summary` makes one call each to Recall.ai and OpenAI.
+PS: Please make sure you are aware of the charges from OpenAI and Recall when calling their APIs. Request to OpenAI API is only made once, when the meeting has ended.
