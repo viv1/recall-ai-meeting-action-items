@@ -67,7 +67,7 @@ interface ActionItem {
     </div>
   );
 
-const POLLING_INTERVAL = 5000; // Poll every 5 seconds
+const POLLING_INTERVAL = 10000; // Poll every 10 seconds
 
 const MeetingActionItems = () => {
   const [meetingLink, setMeetingLink] = useState('');
@@ -83,20 +83,6 @@ const MeetingActionItems = () => {
     setActionItems([]);
     try {
       const response = await axios.post(`${API_BASE_URL}/create_bot`, { meetingLink });
-    //   const x = [
-    //     { Alex: 'Take care of the portal.' },
-    //     { Alex: 'Take care of the webinar.' },
-    //     { Alex: 'Go to the city and take care of all stuff there.' },
-    //     { 'Vivek Sahu': 'Take care of all the remaining bits.' }
-    //   ]
-
-    //   const transformedArray: ActionItem[] = response.data.action_items.map((item:ActionItem) => {
-    //     const name = Object.keys(item)[0]; // Get the name (key)
-    //     const action = (item as any)[name]; // Get the action (value)
-    //     return { name, action };
-    //   });
-    //   setActionItems(transformedArray as any);
-
         await getActionItems(response.data.botId);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -121,6 +107,7 @@ const MeetingActionItems = () => {
               });
               setActionItems(transformedArray as any);
               setIsRecording(false);
+              setMeetingLink('');
         }
         // else {
         //   setError('No data received from the API');

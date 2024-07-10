@@ -10,7 +10,7 @@ const generateActionItems = async (transcript: string): Promise<string> => {
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are a helpful AI assistant that provides user-wise action items using the text transcripts from meetings." },
-        { role: "user", content: `Please provide the action items for the following transcript:\n\n${transcript}. Provide response as a stringified array of JSON format: such that key of JSON is Name of person, and value is the action item for that person.` }
+        { role: "user", content: `Please provide the action items for the following transcript:\n\n${transcript}. Provide response as a stringified array of JSON format: such that key of JSON is Name of person, and value is the action item for that person. Example: [{'John': 'My Tasks'}, {'Doe': 'My other tasks'}]` }
       ],
       temperature: 0.7,
       max_tokens: 500,
